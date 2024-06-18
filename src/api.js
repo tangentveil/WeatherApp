@@ -2,10 +2,8 @@ import axios from "axios";
 
 const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/";
 const AQI_API_URL = "http://api.airvisual.com/v2/";
-// const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-const WEATHER_API_KEY = "6cda7cabf62a98ca769ca062515418eb";
-// const AQI_API_KEY = import.meta.env.VITE_AQI_API_KEY;
-const AQI_API_KEY = "5bdd1364-e811-496c-8143-38237e170ef8";
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const AQI_API_KEY = import.meta.env.VITE_AQI_API_KEY;
 
 console.log(AQI_API_KEY);
 console.log(WEATHER_API_KEY);
