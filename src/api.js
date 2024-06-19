@@ -1,12 +1,7 @@
 import axios from "axios";
 
 const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/";
-const AQI_API_URL = "http://api.airvisual.com/v2/";
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-const AQI_API_KEY = import.meta.env.VITE_AQI_API_KEY;
-
-console.log(AQI_API_KEY);
-console.log(WEATHER_API_KEY);
 
 export const fetchWeather = async (location) => {
   try {
@@ -17,20 +12,6 @@ export const fetchWeather = async (location) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    return null;
-  }
-};
-
-export const fetchAQI = async () => {
-  try {
-    const response = await axios.get(
-      `${AQI_API_URL}nearest_city?key=${AQI_API_KEY}`
-    );
-    // console.log(response.data)
-
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching AQI data:", error);
     return null;
   }
 };
