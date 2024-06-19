@@ -1,8 +1,8 @@
-import './App.css'
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
-import { LocationForm, WeatherCard, AqiCard } from "./components";
+import "./App.css";
+import { Box, Container, Paper, Typography } from "@mui/material";
+import { LocationForm, WeatherCard } from "./components";
 import { useEffect, useState } from "react";
-import { fetchWeather } from "./api";
+import { fetchWeather } from "./fetchWeather";
 import Cloudy from "./assets/weather_app.svg";
 import Raining from "./assets/raining.svg";
 import Sunny from "./assets/sunny.svg";
@@ -10,7 +10,23 @@ import Weather from "./assets/default_weather.svg";
 
 const App = () => {
   const [location, setLocation] = useState("Guna");
+  const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    const getWeather = async () => {
+      try {
+        const data = await fetchWeather(location);
+        setWeatherData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    getWeather();
+  }, [location]);
 
   let weatherImage = Weather;
 
@@ -22,13 +38,6 @@ const App = () => {
     weatherImage = Cloudy;
   }
 
-  useEffect(() => {
-    if (location) {
-      fetchWeather(location).then(setWeatherData);
-    }
-  }, [location]);
-
-
   return (
     <Container
       maxWidth="xs"
@@ -38,7 +47,7 @@ const App = () => {
         justifyContent: "center",
       }}
     >
-      <Paper elevation={8} className='paper' sx={{ borderRadius: "12px" }}>
+      <Paper elevation={8} className="paper" sx={{ borderRadius: "12px" }}>
         <Container maxWidth="xs">
           <Box
             sx={{
@@ -50,10 +59,11 @@ const App = () => {
             }}
             mt={2}
           >
-            
             <img src={weatherImage} className="image" alt="weather" />
 
             <LocationForm location={location} setLocation={setLocation} />
+
+            {loading && <Typography variant="h3">Loading...</Typography>}
 
             {weatherData && <WeatherCard weatherData={weatherData} />}
           </Box>
