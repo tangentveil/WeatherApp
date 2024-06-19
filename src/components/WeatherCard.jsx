@@ -17,14 +17,29 @@ const WeatherCard = ({ weatherData }) => {
         sx={{
           display: "flex",
           alignItems: "baseline",
-          justifyContent: "space-between",
+          // justifyContent: "space-between",
           width: "100%",
         }}
       >
-        <Typography variant="h6">{`${main.temp_min}°C`}</Typography>
-        <Typography variant="h3" padding={2}>{`${main.temp}°C`}</Typography>
-        <Typography variant="h6">{`${main.temp_max}°C`}</Typography>
+        <Typography variant="subtitle2">{`${main.temp_min}°C`}</Typography>
+        <Typography variant="h3" padding={1}>{`${main.temp}`}</Typography>
+        <Typography variant="subtitle2">{`${main.temp_max}°C`}</Typography>
       </Box>
+      <Typography
+        variant="subtitle2"
+        sx={{
+          backgroundColor: "#f44336",
+          color: "#fff",
+          borderRadius: "50px",
+          padding: "5px",
+        }}
+      >
+        Feels like
+      </Typography>
+      <Typography
+        variant="h2"
+        color="primary"
+      >{`${main.feels_like}°C`}</Typography>
     </Box>
   );
 };

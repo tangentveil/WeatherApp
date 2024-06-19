@@ -1,3 +1,4 @@
+import './App.css'
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import { LocationForm, WeatherCard, AqiCard } from "./components";
 import { useEffect, useState } from "react";
@@ -35,19 +36,19 @@ const App = () => {
     }
   }, [location]);
 
-  console.log(weatherData?.weather[0].main);
+  console.log(weatherData);
 
   return (
     <Container
-      maxWidth="sm"
+      maxWidth="xs"
       sx={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <Paper elevation={8} sx={{ borderRadius: "12px" }}>
-        <Container maxWidth="sm">
+      <Paper elevation={8} className='paper' sx={{ borderRadius: "12px" }}>
+        <Container maxWidth="xs">
           <Box
             sx={{
               display: "flex",
@@ -59,7 +60,7 @@ const App = () => {
             mt={2}
           >
             
-            <img src={weatherImage} width="250px" height="200px" alt="weather" />
+            <img src={weatherImage} className="image" alt="weather" />
 
             <LocationForm location={location} setLocation={setLocation} />
 
