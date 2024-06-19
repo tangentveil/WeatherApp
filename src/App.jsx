@@ -7,20 +7,29 @@ import Cloudy from "./assets/weather_app.svg";
 import Raining from "./assets/raining.svg";
 import Sunny from "./assets/sunny.svg";
 import Weather from "./assets/default_weather.svg";
+import NotFound from "./assets/not_found.svg";
 
 const App = () => {
   const [city, setCity] = useState("Guna");
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getWeather = async () => {
+      setError(false);
+      setLoading(true);
       try {
         const data = await fetchWeather(city);
-        setWeatherData(data);
+        if (data) {
+          setWeatherData(data);
+        } else {
+          setError(true);
+        }
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        console.log(error);
+        setError(true);
         setLoading(false);
       }
     };
@@ -65,7 +74,13 @@ const App = () => {
 
             {loading && <Typography variant="h3">Loading...</Typography>}
 
-            {weatherData && <WeatherCard weatherData={weatherData} />}
+            {!loading && error && (
+              <img src={NotFound} className="image" alt="Not Found" />
+            )}
+
+            {weatherData && !error && !loading && (
+              <WeatherCard weatherData={weatherData} />
+            )}
           </Box>
         </Container>
       </Paper>
