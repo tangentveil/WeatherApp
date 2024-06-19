@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Autocomplete, Box, Button, Container, Paper } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
-const LocationForm = ({ location, setLocation }) => {
-  const [inputValue, setInputValue] = useState(location);
+const CityForm = ({ city, setCity }) => {
+  const [inputValue, setInputValue] = useState(city);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLocation(inputValue);
+    setCity(inputValue);
   };
 
   return (
@@ -15,18 +15,14 @@ const LocationForm = ({ location, setLocation }) => {
       <form onSubmit={handleSubmit}>
         <TextField
           size="small"
-          name="location"
-          label="Location"
-          id="location"
+          name="city"
+          label="city"
+          id="city"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          disableElevation
-        >
+        <Button type="submit" variant="contained" disableElevation>
           Search
         </Button>
       </form>
@@ -34,4 +30,4 @@ const LocationForm = ({ location, setLocation }) => {
   );
 };
 
-export default LocationForm;
+export default CityForm;

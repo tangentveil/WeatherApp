@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const WeatherCard = ({ weatherData }) => {
   const { main, weather, name } = weatherData;

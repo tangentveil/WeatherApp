@@ -1,6 +1,6 @@
 import "./App.css";
 import { Box, Container, Paper, Typography } from "@mui/material";
-import { LocationForm, WeatherCard } from "./components";
+import { CityForm, WeatherCard } from "./components";
 import { useEffect, useState } from "react";
 import { fetchWeather } from "./fetchWeather";
 import Cloudy from "./assets/weather_app.svg";
@@ -9,14 +9,14 @@ import Sunny from "./assets/sunny.svg";
 import Weather from "./assets/default_weather.svg";
 
 const App = () => {
-  const [location, setLocation] = useState("Guna");
+  const [city, setCity] = useState("Guna");
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     const getWeather = async () => {
       try {
-        const data = await fetchWeather(location);
+        const data = await fetchWeather(city);
         setWeatherData(data);
         setLoading(false);
       } catch (error) {
@@ -26,7 +26,7 @@ const App = () => {
     };
 
     getWeather();
-  }, [location]);
+  }, [city]);
 
   let weatherImage = Weather;
 
@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <Container
-      maxWidth="xs"
+      maxWidth="sm"
       sx={{
         display: "flex",
         alignItems: "center",
@@ -48,7 +48,7 @@ const App = () => {
       }}
     >
       <Paper elevation={8} className="paper" sx={{ borderRadius: "12px" }}>
-        <Container maxWidth="xs">
+        <Container maxWidth="sm">
           <Box
             sx={{
               display: "flex",
@@ -61,7 +61,7 @@ const App = () => {
           >
             <img src={weatherImage} className="image" alt="weather" />
 
-            <LocationForm location={location} setLocation={setLocation} />
+            <CityForm city={city} setCity={setCity} />
 
             {loading && <Typography variant="h3">Loading...</Typography>}
 
