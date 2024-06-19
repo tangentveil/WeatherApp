@@ -3,27 +3,14 @@
   height: 200px;
 }
 
-.paper {
+form {
+  display: flex;
+  width: 100%;
 }
-
-form{
-    display: flex;
-    width: 100%;
-}
-
 
 @media screen and (max-width: 480px) {
   .image {
     width: 200px;
     height: 150px;
   }
-
-  .temp-box:first-child{
-    display: none;
-  }
-
-  /* .paper {
-    width: 90%;
-  } */
-
 }
