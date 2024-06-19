@@ -9,8 +9,8 @@ const WeatherCard = ({ weatherData }) => {
       sx={{ display: "flex", flexDirection: "column", placeItems: "center" }}
       padding={1}
     >
-      <Typography variant="h2">{name}</Typography>
-      <Typography variant="h4">{weather[0].main}</Typography>
+      <Typography variant="h4">{name}</Typography>
+      <Typography variant="h5">{weather[0].main}</Typography>
       <Typography variant="body1">{weather[0].description}</Typography>
 
       <Box
